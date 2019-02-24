@@ -26,7 +26,7 @@ class Network {
     }
     if (ways.length < 1)
       throw new Error(`There is no way to the gate!`);
-    ways.sort((a, b) => a.length > b.length);
+    ways.sort((a, b) => a.length - b.length);
     const shortest = ways[0];
 
     const [node1, node2] = shortest;
