@@ -1,14 +1,13 @@
 class Network {
   constructor(nodesCount, links, gates) {
-    let nodes = new Array(nodesCount)
+    const nodes = new Array(nodesCount)
       .fill(null)
-      .map(() => new Set());
-    nodes.forEach((neighbors, name) => {
-      neighbors.name = name;
+      .map((item, name) => ({ name, neighbors: new Set() }));
+    nodes.forEach(({ name, neighbors }) => {
       links
-        .filter(l => l.N1 === name || l.N2 === name)
-        .forEach(l => {
-          const neighborName = l.N1 === name ? l.N2 : l.N1;
+        .filter(({ N1, N2 }) => N1 === name || N2 === name)
+        .forEach(({ N1, N2 }) => {
+          const neighborName = N1 === name ? N2 : N1;
           neighbors.add(nodes[neighborName]);
         });
     });
@@ -31,7 +30,7 @@ class Network {
 
     const [node1, node2] = shortest;
     this._disneighbors(node1, node2);
-    return [node1, node2];
+    return `${node1.name} ${node2.name}`;
   }
 
   _shortestWay(from, to) {
@@ -44,7 +43,7 @@ class Network {
 
       for (let way of generation) {
         const lastNode = way[way.length - 1];
-        for (let neighbor of lastNode) {
+        for (let neighbor of lastNode.neighbors) {
           if (nodesPool.delete(neighbor)) {
             const newWay = [...way, neighbor];
             if (neighbor === to)
@@ -58,8 +57,8 @@ class Network {
   }
 
   _disneighbors(node1, node2) {
-    node1.delete(node2);
-    node2.delete(node1);
+    node1.neighbors.delete(node2);
+    node2.neighbors.delete(node1);
   }
 }
 
@@ -90,11 +89,11 @@ class Network {
   while (true) {
     // The index of the node on which the Skynet agent is positioned this turn
     const SI = parseInt(readline());
-    const [node1, node2] = network.nextTurn(SI);
+    
     // Write an action using print()
     // To debug: printErr('Debug messages...');
 
     // Example: 0 1 are the indices of the nodes you wish to sever the link between
-    print(`${node1.name} ${node2.name}`);
+    print(network.nextTurn(SI));
   }
 }
