@@ -1,4 +1,5 @@
 ﻿Описание решения задачи "Super Computer"
+
 Ссылка: https://www.codingame.com/ide/puzzle/super-computer
 
 ## Исходные данные

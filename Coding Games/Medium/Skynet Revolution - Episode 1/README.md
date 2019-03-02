@@ -1,5 +1,7 @@
 ﻿Описание решения задачи "Skynet Revolution - Episode 1"
 
+Ссылка: https://www.codingame.com/training/hard/skynet-revolution-episode-1
+
 ## Исходные данные
 
 ```JavaScript

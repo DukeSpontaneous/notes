@@ -1,4 +1,6 @@
-﻿Описание решения задачи "Skynet Revolution - Episode 1"
+﻿Описание решения задачи "Skynet Revolution - Episode 2"
+
+Ссылка: https://www.codingame.com/training/hard/skynet-revolution-episode-2
 
 ## Исходные данные
 
